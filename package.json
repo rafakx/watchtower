@@ -1,0 +1,25 @@
+{
+  "name": "Watchtower",
+  "version": "1.0.0",
+  "description": "A effective tracking tool",
+  "main": "index.js",
+  "author": "Rafael rubenich (@rafakx)",
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "^2.29.0",
+    "path": "^0.12.7",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.5.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server"
+  }
+}
