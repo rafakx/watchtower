@@ -1,10 +1,11 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Main from './Main.jsx';
 import Header from './Header.jsx';
-import Home from '../module/Home.jsx';
+import Home from '../pages/Home/Home.jsx';
 
 export default class App extends PureComponent {
+
   render() {
     return (
       <Router>
