@@ -1,14 +1,34 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Grid, Column, Header, Feed, Icon, } from 'semantic-ui-react';
 import Item from '../../components/Item.jsx';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, RadialChart, VerticalGridLines, VerticalBarSeries} from 'react-vis';
 
-export default class Home extends Component {
+export default class Home extends PureComponent {
+
+  constructor() {
+    super();
+
+    this.state = {
+      charts: {
+        width: 300,
+        height: 200
+      }
+    }
+  }
+
+  componentWillMount() {
+    const width = (window.innerWidth / 4) - 40;
+    const height = (window.innerHeight / 2) - 125;
+
+    this.setState({
+      charts: { width, height }
+    });
+  }
 
   BurnDown = () => (
-    <XYPlot
-      width={300}
-      height={200}>
+    <XYPlot 
+      width={this.state.charts.width} 
+      height={this.state.charts.height}>
       <HorizontalGridLines />
       <LineSeries
         data={[
@@ -16,7 +36,6 @@ export default class Home extends Component {
           {x: 2, y: 4},
           {x: 3, y: 1}
         ]}/>
-
       <LineSeries
         strokeStyle='dashed'
         data={[
@@ -29,41 +48,33 @@ export default class Home extends Component {
     </XYPlot>
   );
 
-  Radial = () => (
-    <div style={{'padding-left': '30px'}}>
-      <RadialChart
-        innerRadius={60}
-        radius={90}
-        showLabels
-        data={ [{angle: 1, label: 'To do'}, {angle: 2, label: 'Doing'}, {angle: 2, label: 'Done'}]}
-        width={240}
-        height={200}  />
-    </div>
+  Bar = () => (
+    <XYPlot xType="ordinal" 
+      width={this.state.charts.width} 
+      height={this.state.charts.height}>
+      <VerticalGridLines />
+      <HorizontalGridLines />
+      <XAxis tickLabelAngle={-45} />
+      <YAxis />
+      <VerticalBarSeries
+        data={[
+          {x: 'Apples', y: 10},
+          {x: 'Bananas', y: 5},
+          {x: 'Cranberries', y: 15}
+        ]} />
+      <VerticalBarSeries
+        data={[
+          {x: 'Apples', y: 12},
+          {x: 'Bananas', y: 2},
+          {x: 'Cranberries', y: 11}
+        ]} />
+    </XYPlot>
   )
 
-  Bar = () => (
-    <XYPlot
-    margin={{bottom: 70}}
-    xType="ordinal"
-    width={300}
-    height={200}>
-    <VerticalGridLines />
-    <HorizontalGridLines />
-    <XAxis tickLabelAngle={-45} />
-    <YAxis />
-    <VerticalBarSeries
-      data={[
-        {x: 'Apples', y: 10},
-        {x: 'Bananas', y: 5},
-        {x: 'Cranberries', y: 15}
-      ]}/>
-    <VerticalBarSeries
-      data={[
-        {x: 'Apples', y: 12},
-        {x: 'Bananas', y: 2},
-        {x: 'Cranberries', y: 11}
-      ]}/>
-    </XYPlot>
+  SeeMore = () => (
+    <div>
+      <a>Todos indicadores <Icon name="arrow right" /></a>
+    </div>
   )
 
   render() {
@@ -87,12 +98,9 @@ export default class Home extends Component {
           <Header as='h3'>Burndown</Header>
           <this.BurnDown />
           <Header as='h3'>Tempo total por número de tarefas</Header>    
-          {/*<this.Radial />*/}
           <this.Bar />
           <br />
-          <div style={{'text-align': 'right', 'margin-right': '15px'}}>
-          <a>Todos indicadores <Icon name="arrow right" /></a>
-          </div>
+          <this.SeeMore />
         </Grid.Column>
       </Grid>
     );
