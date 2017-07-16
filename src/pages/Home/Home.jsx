@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { Grid, Column, Header, Feed, Icon, } from 'semantic-ui-react';
+import { Grid, Column, Header, Feed, Icon } from 'semantic-ui-react';
 import Item from '../../components/Item.jsx';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, RadialChart, VerticalGridLines, VerticalBarSeries} from 'react-vis';
+import { Link } from 'react-router-dom';
 
 export default class Home extends PureComponent {
 
@@ -73,7 +74,7 @@ export default class Home extends PureComponent {
 
   SeeMore = () => (
     <div>
-      <a>Todos indicadores <Icon name="arrow right" /></a>
+      <Link to='kpis'>Todos indicadores <Icon name="arrow right" /></Link>
     </div>
   )
 

@@ -8,8 +8,10 @@ export default class Main extends PureComponent {
 		return (
 			<header>
 				<h1>
-					<Icon name='protect'/>
-					WATCHTOWER
+					<Link to='/'>
+						<Icon name='protect'/>
+						WATCHTOWER
+					</Link>
 				</h1>
 			</header>
     );

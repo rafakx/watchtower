@@ -16,8 +16,8 @@ export default class Item extends PureComponent {
     
 		return (
 			<div className='item'>
-				<span>{`#${task}`}</span>
-				<p>{title}</p>
+				<span>{ `#${task}` }</span>
+				<p>{ title }</p>
 			</div>
     );
   }
