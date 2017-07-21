@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
-import { Grid, Column, Header, Feed, Icon } from 'semantic-ui-react';
+import React, {PureComponent} from 'react';
 import Item from '../../components/Item.jsx';
-import { XYPlot, XAxis, YAxis, HorizontalGridLines, LineSeries, RadialChart, VerticalGridLines, VerticalBarSeries} from 'react-vis';
-import { Link } from 'react-router-dom';
+import {Grid, Column, Header, Feed, Icon} from 'semantic-ui-react';
+import {HorizontalGridLines, LineSeries, RadialChart, VerticalBarSeries, 
+  VerticalGridLines, XAxis, XYPlot, YAxis} from 'react-vis';
+import {Link} from 'react-router-dom';
 
 export default class Home extends PureComponent {
 
@@ -13,6 +14,22 @@ export default class Home extends PureComponent {
       charts: {
         width: 300,
         height: 200
+      },
+      data: {
+        issues: {
+          todo: [
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+          ],
+          doing: [
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+          ],
+          done: [
+            {task: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+          ]
+        }
       }
     }
   }
@@ -31,19 +48,8 @@ export default class Home extends PureComponent {
       width={this.state.charts.width} 
       height={this.state.charts.height}>
       <HorizontalGridLines />
-      <LineSeries
-        data={[
-          {x: 1, y: 10},
-          {x: 2, y: 4},
-          {x: 3, y: 1}
-        ]}/>
-      <LineSeries
-        strokeStyle='dashed'
-        data={[
-          {x: 1, y: 10},
-          {x: 2, y: 5},
-          {x: 3, y: 0}
-        ]}/>
+      <LineSeries data={null}/>
+      <LineSeries data={null} strokeStyle='dashed' />
       <XAxis />
       <YAxis />
     </XYPlot>
@@ -57,43 +63,39 @@ export default class Home extends PureComponent {
       <HorizontalGridLines />
       <XAxis tickLabelAngle={-45} />
       <YAxis />
-      <VerticalBarSeries
-        data={[
-          {x: 'Apples', y: 10},
-          {x: 'Bananas', y: 5},
-          {x: 'Cranberries', y: 15}
-        ]} />
-      <VerticalBarSeries
-        data={[
-          {x: 'Apples', y: 12},
-          {x: 'Bananas', y: 2},
-          {x: 'Cranberries', y: 11}
-        ]} />
+      <VerticalBarSeries data={null} />
+      <VerticalBarSeries data={null} />
     </XYPlot>
   )
 
   SeeMore = () => (
     <div>
-      <Link to='kpis'>Todos indicadores <Icon name="arrow right" /></Link>
+      <Link to='dashboard'>All kpis <Icon name="arrow right" /></Link>
     </div>
   )
 
   render() {
+    const {issues} = this.state.data;
+
     return (
       <Grid>
         <Grid.Column width={4}>
           <Header as='h3'>To do</Header>
-          <Item task="31200" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+          <For each="item" of={issues.todo}>
+            <Item {...item} />
+          </For>
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as='h3'>Doing</Header>
-          <Item task="31200" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
-          <Item task="31200" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+          <For each="item" of={issues.doing}>
+            <Item {...item} />
+          </For>
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as='h3'>Done</Header>
-          <Item task="31200" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
-          <Item task="31200" title="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+          <For each="item" of={issues.done}>
+            <Item {...item} />
+          </For>
         </Grid.Column>
         <Grid.Column width={4}>
           <Header as='h3'>Burndown</Header>
