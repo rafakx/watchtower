@@ -5,14 +5,6 @@
   "main": "index.js",
   "author": "Rafael rubenich (@rafakx)",
   "license": "MIT",
-  "dependencies": {
-    "html-webpack-plugin": "^2.29.0",
-    "jsx-control-statements": "^3.2.5",
-    "path": "^0.12.7",
-    "prop-types": "^15.5.10",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.5.0"
-  },
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.0",
@@ -21,16 +13,24 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "jsx-control-statements": "^3.2.5",
     "node-sass": "^4.5.3",
-    "react": "^15.6.1",
+    "path": "^0.12.7",
+    "prop-types": "^15.5.10",
+    "react-dnd-html5-backend": "^2.4.1",
+    "react-dnd": "^2.4.0",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1",
     "react-vis": "^1.6.7",
+    "react": "^15.6.1",
     "sass-loader": "^6.0.6",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.70.0",
     "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9"
+    "url-loader": "^0.5.9",
+    "webpack-dev-server": "^2.5.0",
+    "webpack": "^2.6.1"
   },
   "scripts": {
     "build": "webpack",
