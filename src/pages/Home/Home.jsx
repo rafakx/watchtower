@@ -5,8 +5,8 @@ import {HorizontalGridLines, LineSeries, RadialChart, VerticalBarSeries,
 import {Link} from 'react-router-dom';
 
 import Item from '../../components/Item.jsx';
-import Board from '../../components/Board.jsx';
-import DraggableArea from '../../components/DraggableArea.jsx';
+import ItemAdd from '../../components/ItemAdd.jsx';
+import {Area, Source, Target} from '../../components/draggable/Draggable.jsx';
 
 export default class Home extends PureComponent {
 
@@ -81,31 +81,38 @@ export default class Home extends PureComponent {
     const {issues} = this.state.data;
 
     return (
-      <DraggableArea>
-        <Grid>
+      <Area>
+        <Grid> 
           <Grid.Column width={4}>
-            <Board>
+            <Target>
               <Header as='h3'>To do</Header>
               <For each="item" of={issues.todo}>
-                <Item {...item} />
+                <Source>
+                  <Item {...item} />
+                </Source>
               </For>
-            </Board>
+              <ItemAdd />              
+            </Target>
           </Grid.Column>
           <Grid.Column width={4}>
-            <Board>
+            <Target>            
               <Header as='h3'>Doing</Header>
               <For each="item" of={issues.doing}>
-                <Item {...item} />
+                <Source>              
+                  <Item {...item} />
+                </Source>
               </For>
-            </Board>
+            </Target>
           </Grid.Column>
           <Grid.Column width={4}>
-            <Board>
+            <Target>
               <Header as='h3'>Done</Header>
               <For each="item" of={issues.done}>
-                <Item {...item} />
+                <Source>                            
+                  <Item {...item} />
+                </Source>
               </For>
-            </Board>
+            </Target>
           </Grid.Column>
           <Grid.Column width={4}>
             <Header as='h3'>Burndown</Header>
@@ -116,7 +123,7 @@ export default class Home extends PureComponent {
             <this.SeeMore />
           </Grid.Column>
         </Grid>
-      </DraggableArea>
+      </Area>
     );
   }
 };

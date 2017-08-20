@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 
-class DraggableArea extends Component {
+class Area extends Component {
 	
 	static propTypes = {
 		children: PropTypes.node
@@ -14,4 +14,4 @@ class DraggableArea extends Component {
 	}
 } 
 
-export default DragDropContext(HTML5Backend)(DraggableArea);
+export default DragDropContext(HTML5Backend)(Area);
