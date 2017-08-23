@@ -1,12 +1,14 @@
-import React, {PureComponent} from 'react';
-import {Grid, Column, Header, Feed, Icon} from 'semantic-ui-react';
-import {HorizontalGridLines, LineSeries, RadialChart, VerticalBarSeries, 
-  VerticalGridLines, XAxis, XYPlot, YAxis} from 'react-vis';
-import {Link} from 'react-router-dom';
+import React, { PureComponent } from 'react';
+import { Grid, Column, Header, Feed, Icon } from 'semantic-ui-react';
+import {
+  HorizontalGridLines, LineSeries, RadialChart, VerticalBarSeries,
+  VerticalGridLines, XAxis, XYPlot, YAxis
+} from 'react-vis';
+import { Link } from 'react-router-dom';
 
 import Item from '../../components/Item.jsx';
 import ItemAdd from '../../components/ItemAdd.jsx';
-import {Area, Source, Target} from '../../components/draggable/Draggable.jsx';
+import { Area, Source, Target } from '../../components/draggable/Draggable.jsx';
 
 export default class Home extends PureComponent {
 
@@ -21,16 +23,16 @@ export default class Home extends PureComponent {
       data: {
         issues: {
           todo: [
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" },
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" }
           ],
           doing: [
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"},
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" },
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" },
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" }
           ],
           done: [
-            {id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry"}
+            { id: 32100, title: "Lorem Ipsum is simply dummy text of the printing and typesetting industry" }
           ]
         }
       }
@@ -47,11 +49,11 @@ export default class Home extends PureComponent {
   }
 
   BurnDown = () => (
-    <XYPlot 
-      width={this.state.charts.width} 
+    <XYPlot
+      width={this.state.charts.width}
       height={this.state.charts.height}>
       <HorizontalGridLines />
-      <LineSeries data={null}/>
+      <LineSeries data={null} />
       <LineSeries data={null} strokeStyle='dashed' />
       <XAxis />
       <YAxis />
@@ -59,8 +61,8 @@ export default class Home extends PureComponent {
   );
 
   Bar = () => (
-    <XYPlot xType="ordinal" 
-      width={this.state.charts.width} 
+    <XYPlot xType="ordinal"
+      width={this.state.charts.width}
       height={this.state.charts.height}>
       <VerticalGridLines />
       <HorizontalGridLines />
@@ -78,11 +80,11 @@ export default class Home extends PureComponent {
   )
 
   render() {
-    const {issues} = this.state.data;
+    const { issues } = this.state.data;
 
     return (
       <Area>
-        <Grid> 
+        <Grid>
           <Grid.Column width={4}>
             <Target>
               <Header as='h3'>To do</Header>
@@ -91,14 +93,14 @@ export default class Home extends PureComponent {
                   <Item {...item} />
                 </Source>
               </For>
-              <ItemAdd />              
+              <ItemAdd />
             </Target>
           </Grid.Column>
           <Grid.Column width={4}>
-            <Target>            
+            <Target>
               <Header as='h3'>Doing</Header>
               <For each="item" of={issues.doing}>
-                <Source>              
+                <Source>
                   <Item {...item} />
                 </Source>
               </For>
@@ -108,7 +110,7 @@ export default class Home extends PureComponent {
             <Target>
               <Header as='h3'>Done</Header>
               <For each="item" of={issues.done}>
-                <Source>                            
+                <Source>
                   <Item {...item} />
                 </Source>
               </For>
@@ -117,7 +119,7 @@ export default class Home extends PureComponent {
           <Grid.Column width={4}>
             <Header as='h3'>Burndown</Header>
             <this.BurnDown />
-            <Header as='h3'>Tempo total por número de tarefas</Header>    
+            <Header as='h3'>Tempo total por número de tarefas</Header>
             <this.Bar />
             <br />
             <this.SeeMore />
